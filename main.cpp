@@ -165,6 +165,12 @@ void compute_and_rotate(int indice, int type){
             }
         }
 
+        for(int i = 1; i <= Marime_Piese; i++){
+            for(int j = 1; j <= Marime_Piese; j++){
+                mask[i][j] = rotatie[i][j];
+            }
+        }
+
         ///rotim si oglinditul
         for(int t = 0; t < rotatii; t++){
             transformare_in_arbore(indice);
@@ -401,10 +407,12 @@ void generare_piese(){
 void afisare_tabla(){
     int scor_eu = 0, scor_el = 0;
 
-    cout << '\n';
+    cerr.flush();
+
+    cerr << '\n';
     for(int i = 1; i <= Marime_Tabla; i++){
         for(int j = 1; j <= Marime_Tabla; j++){
-            cout << tabla_de_joc[i][j];
+            cerr << tabla_de_joc[i][j];
 
             if(tabla_de_joc[i][j] == 1){
                 scor_eu++;
@@ -413,10 +421,10 @@ void afisare_tabla(){
                 scor_el++;
             }
         }
-        cout << '\n';
+        cerr << '\n';
     }
 
-    cout << scor_eu << " " << scor_el << '\n';
+    cerr << scor_eu << " " << scor_el << '\n';
 }
 
 void proceseaza_mutarea_adversarului(){
@@ -503,15 +511,19 @@ void pregatire_tabla(){
                     vecin_i = i + dirX[dir];
                     vecin_j = j + dirY[dir];
 
-                    if(tabla_de_joc[vecin_i][vecin_j] != 1 && tabla_de_joc[vecin_i][vecin_j] != 2){
-                        tabla_de_joc[vecin_i][vecin_j] = 3;
+                    if(vecin_i >= 1 && vecin_i <= Marime_Tabla && vecin_j >= 1 && vecin_j <= Marime_Tabla){
+                        if(tabla_de_joc[vecin_i][vecin_j] != 1 && tabla_de_joc[vecin_i][vecin_j] != 2){
+                            tabla_de_joc[vecin_i][vecin_j] = 3;
+                        }
                     }
 
                     colt_i = i + dirColtX[dir];
                     colt_j = j + dirColtY[dir];
 
-                    if(tabla_de_joc[colt_i][colt_j] == 0){
-                        tabla_de_joc[colt_i][colt_j] = 4;
+                    if(colt_i >= 1 && colt_i <= Marime_Tabla && colt_j >= 1 && colt_j <= Marime_Tabla){
+                        if(tabla_de_joc[colt_i][colt_j] == 0){
+                            tabla_de_joc[colt_i][colt_j] = 4;
+                        }
                     }
                 }
             }
@@ -636,9 +648,8 @@ void generare_mutare(){
 
     mutare_optima = calculare_mutare_optima();
     actualizare_matrice(mutare_optima);
-    afisare_mutare(mutare_optima);
 
-    //afisare_tabla();
+    afisare_mutare(mutare_optima);
 }
 
 int main(){
@@ -652,6 +663,8 @@ int main(){
             cout.flush();
         }
         else if(comanda == "quit"){
+            cerr << "Succes";
+
             cout << "= 0" << '\n' << '\n';
             cout.flush();
             break;
