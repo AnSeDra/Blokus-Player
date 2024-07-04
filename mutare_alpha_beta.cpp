@@ -243,24 +243,6 @@ void generare_piese_marime_4(){
     mask[1][4] = 1;
     compute_and_rotate(5, 1);
 
-    /// **
-    /// **
-    reset_mask();
-    mask[1][1] = 1;
-    mask[1][2] = 1;
-    mask[2][1] = 1;
-    mask[2][2] = 1;
-    transformare_in_arbore(6);
-
-    ///**
-    /// **
-    reset_mask();
-    mask[1][1] = 1;
-    mask[1][2] = 1;
-    mask[2][2] = 1;
-    mask[2][3] = 1;
-    compute_and_rotate(7, 4);
-
     /// ***
     ///  *
     reset_mask();
@@ -268,7 +250,7 @@ void generare_piese_marime_4(){
     mask[1][2] = 1;
     mask[1][3] = 1;
     mask[2][2] = 1;
-    compute_and_rotate(8, 2);
+    compute_and_rotate(6, 2);
 
     ///***
     ///*
@@ -277,10 +259,110 @@ void generare_piese_marime_4(){
     mask[1][2] = 1;
     mask[1][3] = 1;
     mask[2][1] = 1;
-    compute_and_rotate(9, 3);
+    compute_and_rotate(7, 3);
+
+    ///**
+    /// **
+    reset_mask();
+    mask[1][1] = 1;
+    mask[1][2] = 1;
+    mask[2][2] = 1;
+    mask[2][3] = 1;
+    compute_and_rotate(8, 4);
+
+    /// **
+    /// **
+    reset_mask();
+    mask[1][1] = 1;
+    mask[1][2] = 1;
+    mask[2][1] = 1;
+    mask[2][2] = 1;
+    transformare_in_arbore(9);
 }
 
 void generare_piese_marime_5(){
+    ///*****
+    reset_mask();
+    mask[1][1] = 1;
+    mask[1][2] = 1;
+    mask[1][3] = 1;
+    mask[1][4] = 1;
+    mask[1][5] = 1;
+    compute_and_rotate(10, 1);
+
+    ///**
+    /// *
+    /// **
+    reset_mask();
+    mask[1][1] = 1;
+    mask[1][2] = 1;
+    mask[2][2] = 1;
+    mask[3][2] = 1;
+    mask[3][3] = 1;
+    compute_and_rotate(11, 4);
+
+    ///*
+    ///*
+    ///***
+    reset_mask();
+    mask[1][1] = 1;
+    mask[2][1] = 1;
+    mask[3][1] = 1;
+    mask[3][2] = 1;
+    mask[3][3] = 1;
+    compute_and_rotate(12, 2);
+
+    ///***
+    ///**
+    reset_mask();
+    mask[1][1] = 1;
+    mask[1][2] = 1;
+    mask[1][3] = 1;
+    mask[2][1] = 1;
+    mask[2][2] = 1;
+    compute_and_rotate(13, 3);
+
+    ///*
+    ///***
+    ///*
+    reset_mask();
+    mask[1][1] = 1;
+    mask[2][1] = 1;
+    mask[2][2] = 1;
+    mask[2][3] = 1;
+    mask[3][1] = 1;
+    compute_and_rotate(14, 2);
+
+    ///****
+    /// *
+    reset_mask();
+    mask[1][1] = 1;
+    mask[1][2] = 1;
+    mask[1][3] = 1;
+    mask[1][4] = 1;
+    mask[2][2] = 1;
+    compute_and_rotate(15, 3);
+
+    ///*
+    ///****
+    reset_mask();
+    mask[1][1] = 1;
+    mask[2][1] = 1;
+    mask[2][2] = 1;
+    mask[2][3] = 1;
+    mask[2][4] = 1;
+    compute_and_rotate(16, 3);
+
+    ///**
+    /// ***
+    reset_mask();
+    mask[1][1] = 1;
+    mask[1][2] = 1;
+    mask[2][2] = 1;
+    mask[2][3] = 1;
+    mask[2][4] = 1;
+    compute_and_rotate(17, 3);
+
     ///* *
     ///***
     reset_mask();
@@ -289,58 +371,7 @@ void generare_piese_marime_5(){
     mask[2][2] = 1;
     mask[2][3] = 1;
     mask[1][3] = 1;
-    compute_and_rotate(10, 2);
-
-    ///***
-    ///**
-    reset_mask();
-    mask[1][1] = 1;
-    mask[1][2] = 1;
-    mask[1][3] = 1;
-    mask[2][1] = 1;
-    mask[2][2] = 1;
-    compute_and_rotate(11, 3);
-
-    ///****
-    /// *
-    reset_mask();
-    mask[1][1] = 1;
-    mask[1][2] = 1;
-    mask[1][3] = 1;
-    mask[1][4] = 1;
-    mask[2][2] = 1;
-    compute_and_rotate(12, 3);
-
-    ///*
-    ///***
-    ///*
-    reset_mask();
-    mask[1][1] = 1;
-    mask[2][1] = 1;
-    mask[2][2] = 1;
-    mask[2][3] = 1;
-    mask[3][1] = 1;
-    compute_and_rotate(13, 2);
-
-    /// *
-    ///***
-    /// *
-    reset_mask();
-    mask[1][2] = 1;
-    mask[2][1] = 1;
-    mask[2][2] = 1;
-    mask[2][3] = 1;
-    mask[3][2] = 1;
-    transformare_in_arbore(14);
-
-    ///*****
-    reset_mask();
-    mask[1][1] = 1;
-    mask[1][2] = 1;
-    mask[1][3] = 1;
-    mask[1][4] = 1;
-    mask[1][5] = 1;
-    compute_and_rotate(15, 1);
+    compute_and_rotate(18, 2);
 
     /// **
     ///**
@@ -351,7 +382,7 @@ void generare_piese_marime_5(){
     mask[2][1] = 1;
     mask[2][2] = 1;
     mask[3][2] = 1;
-    compute_and_rotate(16, 3);
+    compute_and_rotate(19, 3);
 
     ///*
     ///**
@@ -362,49 +393,18 @@ void generare_piese_marime_5(){
     mask[2][2] = 1;
     mask[3][2] = 1;
     mask[3][3] = 1;
-    compute_and_rotate(17, 2);
+    compute_and_rotate(20, 2);
 
-    ///**
-    /// ***
-    reset_mask();
-    mask[1][1] = 1;
-    mask[1][2] = 1;
-    mask[2][2] = 1;
-    mask[2][3] = 1;
-    mask[2][4] = 1;
-    compute_and_rotate(18, 3);
-
-    ///**
     /// *
-    /// **
+    ///***
+    /// *
     reset_mask();
-    mask[1][1] = 1;
     mask[1][2] = 1;
-    mask[2][2] = 1;
-    mask[3][2] = 1;
-    mask[3][3] = 1;
-    compute_and_rotate(19, 4);
-
-    ///*
-    ///****
-    reset_mask();
-    mask[1][1] = 1;
     mask[2][1] = 1;
     mask[2][2] = 1;
     mask[2][3] = 1;
-    mask[2][4] = 1;
-    compute_and_rotate(20, 3);
-
-    ///*
-    ///*
-    ///***
-    reset_mask();
-    mask[1][1] = 1;
-    mask[2][1] = 1;
-    mask[3][1] = 1;
     mask[3][2] = 1;
-    mask[3][3] = 1;
-    compute_and_rotate(21, 2);
+    transformare_in_arbore(21);
 }
 
 void generare_piese(){
@@ -543,7 +543,7 @@ void prima_mutare(){
         tabla_de_joc[10][6] = 1;
     }
 
-    folosit[1][14] = 1; ///marchez x ca folosit
+    folosit[1][21] = 1; ///marchez x ca folosit
 }
 
 void incepe_partida(){
