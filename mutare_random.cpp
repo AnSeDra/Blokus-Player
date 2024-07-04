@@ -10,6 +10,7 @@ const int NrDirectii = 4;
 const int Marime_Piese = 5;
 const int Marime_Tabla = 14;
 const int Nr_Piese_Diferite = 21;
+const int Adancime_Alpha_Beta = 3;
 const int Nr_Configuratii_Piese = 14005;
 
 int dirX[] = {1, -1, 0,  0};
@@ -35,10 +36,21 @@ struct mutare{
 
 string comanda;
 char culoare;
-int tabla_de_joc[Marime_Tabla + 2][Marime_Tabla + 2], nr_piese;
+int nr_piese;
 piesa piese[Nr_Configuratii_Piese];
-bool folosit[Nr_Piese_Diferite + 1], mask[Marime_Piese + 1][Marime_Piese + 1], rotatie[Marime_Piese + 1][Marime_Piese + 1], eValid;
+bool folosit[Nr_Piese_Diferite + 1], folosite_adversar[Nr_Piese_Diferite + 1], mask[Marime_Piese + 1][Marime_Piese + 1], rotatie[Marime_Piese + 1][Marime_Piese + 1], eValid;
 vector<mutare> mutari_posibile;
+
+int tabla_de_joc[Marime_Tabla + 2][Marime_Tabla + 2];
+
+///   Pe tabla de joc se afla:
+/// -1  => celula bordata
+///  0  => celula libera
+///  1  => celula ocupata de o mutare de mine
+///  2  => celula ocupata de o mutare a adversarului
+///  3  => celula adiacenta cu o piesa pusa de jucatorul curent
+///  4  => colt valid pentru piesele jucatorului curent
+///  5, 6, 7  => piese puse temporar pe tabla
 
 void comenzi_initiale(){
     ///citire set_game Blokus Duo
@@ -428,12 +440,17 @@ void afisare_tabla(){
 }
 
 void proceseaza_mutarea_adversarului(){
-    unsigned poz, i, j;
+    unsigned poz, i, j, min_i, min_j;
     char culoare_adversar;
+    bool eEgal;
     string pozitii_ocupate;
+    vector<pair<int, int>> pozitii;
 
     cin >> culoare_adversar;
     getline(cin, pozitii_ocupate);
+
+    min_i = Marime_Tabla;
+    min_j = Marime_Tabla;
 
     poz = 1;  ///sarim primul spatiu pana la pozitii
     while(poz < pozitii_ocupate.size()){
@@ -449,7 +466,44 @@ void proceseaza_mutarea_adversarului(){
         }
 
         tabla_de_joc[i][j] = 2;
+
+        min_i = min(min_i, i);
+        min_j = min(min_j, j);
+        pozitii.push_back({i, j});
     }
+
+    reset_mask();
+    for(unsigned i = 0; i < pozitii.size(); i++){
+        pozitii[i].first -= min_i - 1;
+        pozitii[i].second -= min_j - 1;
+
+        mask[pozitii[i].first][pozitii[i].second] = 1;
+    }
+
+    transformare_in_arbore(22);
+
+    for(int i = 1; i < nr_piese; i++){
+        if(piese[i].marime != piese[nr_piese].marime){
+            continue;
+        }
+        else if(folosite_adversar[piese[i].indice] == 1){
+            continue;
+        }
+
+        eEgal = 1;
+        for(int j = 1; j <= piese[i].marime; j++){
+            if((piese[i].biti[j].x != piese[nr_piese].biti[j].x) || (piese[i].biti[j].y != piese[nr_piese].biti[j].y)){
+                eEgal = 0;
+                break;
+            }
+        }
+
+        if(eEgal){
+            folosite_adversar[piese[i].indice] = 1;
+        }
+    }
+
+    nr_piese--;
 
     cout << "= " << '\n' << '\n';
     cout.flush();
