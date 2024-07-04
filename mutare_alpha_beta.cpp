@@ -767,6 +767,26 @@ void generare_mutare(){
     afisare_mutare(mutare_optima);
 }
 
+void afisare_scor(){
+    int scor_eu = 0, scor_el = 0;
+
+    cerr << "Succes " << '\n';
+
+    for(int i = 1; i <= Marime_Tabla; i++){
+        for(int j = 1; j <= Marime_Tabla; j++){
+            if(tabla_de_joc[i][j] == 1){
+                scor_eu++;
+            }
+            else if(tabla_de_joc[i][j] == 2){
+                scor_el++;
+            }
+        }
+    }
+
+    cerr << scor_eu << " " << scor_el << '\n';
+    cerr.flush();
+}
+
 int main(){
     incepe_partida();
 
@@ -778,7 +798,7 @@ int main(){
             cout.flush();
         }
         else if(comanda == "quit"){
-            cerr << "Succes" << '\n';
+            afisare_scor();
 
             cout << "= 0" << '\n' << '\n';
             cout.flush();
