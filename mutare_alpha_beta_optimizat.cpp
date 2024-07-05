@@ -17,10 +17,12 @@ const int INF = 1e9 + 5;
 
 const int Punctaj_Piese_Jucator = 3;
 const int Punctaj_Piese_Adversar = 3;
-const int Punctaj_Colturi_Jucator = 9;
-const int Punctaj_Colturi_Adversar = 9;
-const int Punctaj_Pozitii_Pierdute_Jucator = -4;
-const int Punctaj_Pozitii_Pierdute_Adversar = -4;
+const int Punctaj_Colturi_Jucator = 14;
+const int Punctaj_Colturi_Adversar = 18;
+const int Punctaj_Pozitii_Pierdute_Jucator = -12;
+const int Punctaj_Pozitii_Pierdute_Adversar = -9;
+const int Punctaj_Pozitii_Prioritate_Mica = 10;
+const int Punctaj_Pozitii_Prioritate_Mare = 11;
 
 int dirX[] = {1, -1, 0,  0};
 int dirY[] = {0,  0, 1, -1};
@@ -696,6 +698,8 @@ int evaluare_statica(int jucator){
     int val, scor = 0;
     int colturi_jucator = 0, colturi_adversar = 0;
     int anulate_jucator = 0, anulate_adversar = 0;
+    int pozitii_prioritate_mare_jucator = 0, pozitii_prioritate_mare_adversar = 0;
+    int pozitii_prioritate_mica_jucator = 0, pozitii_prioritate_mica_adversar = 0;
     bool e_colt_valid, e_anulata;
 
     for(int i = 1; i <= Marime_Tabla; i++){
@@ -753,12 +757,35 @@ int evaluare_statica(int jucator){
                     anulate_adversar++;
                 }
             }
+            else if((tabla_de_joc[i][j] % 2) == (jucator % 2)){
+                ///Verificam prioritatea pozitiei ocupate de jucator in functie de mijlocul tablei.
+
+                if(4 <= i && i <= 11 && 4 <= j && j <= 11){
+                    pozitii_prioritate_mare_jucator++;
+                }
+                else{
+                    pozitii_prioritate_mica_jucator++;
+                }
+            }
+            else{
+                ///Verificam prioritatea pozitiei ocupate de adversar in functie de mijlocul tablei.
+
+                if(4 <= i && i <= 11 && 4 <= j && j <= 11){
+                    pozitii_prioritate_mare_adversar++;
+                }
+                else{
+                    pozitii_prioritate_mica_adversar++;
+                }
+            }
         }
     }
 
     scor = Punctaj_Piese_Jucator * scoruri_piese[jucator] - Punctaj_Piese_Adversar * scoruri_piese[3 - jucator];
     scor += Punctaj_Colturi_Jucator * colturi_jucator - Punctaj_Colturi_Adversar * colturi_adversar;
     scor += Punctaj_Pozitii_Pierdute_Jucator * anulate_jucator - Punctaj_Pozitii_Pierdute_Adversar * anulate_adversar;
+
+    scor += Punctaj_Pozitii_Prioritate_Mare * pozitii_prioritate_mare_jucator - Punctaj_Pozitii_Prioritate_Mare * pozitii_prioritate_mare_adversar;
+    scor += Punctaj_Pozitii_Prioritate_Mica * pozitii_prioritate_mica_jucator - Punctaj_Pozitii_Prioritate_Mica * pozitii_prioritate_mica_adversar;
 
     return scor;
 }
