@@ -863,7 +863,7 @@ void generare_mutare(){
     char culoare;
 
     nr_comenzi_jucate++;
-    if(nr_comenzi_jucate <= 4){
+    if(nr_comenzi_jucate <= 3){
         Adancime_Alpha_Beta = Adancime_Alpha_Beta_Initial;
     }
     else{
